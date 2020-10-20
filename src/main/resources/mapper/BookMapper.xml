@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjf.dao.BookDao">
+    <resultMap id="bookMap" type="book">
+        <id property="bookId" column="book_id"/>
+        <result property="bookName" column="book_name"/>
+        <result property="bookPrice" column="book_price"/>
+        <result property="bookAuthor" column="book_author"/>
+    </resultMap>
+
+    <sql id="bookColumns" >
+       book_id, book_name, book_price, book_author
+    </sql>
+
+    <insert id="addBook" parameterType="book">
+        insert into wjf.book(<include refid="bookColumns"/>)
+        values (#{bookId}, #{bookName}, #{bookPrice}, #{bookAuthor})
+    </insert>
+
+
+    <delete id="deleteBookById" parameterType="int">
+        delete
+        from wjf.book
+        where book_id = #{bookId};
+    </delete>
+
+
+    <update id="updateBook" parameterType="book">
+        update wjf.book
+        set book_name  = #{bookName},
+            book_price = #{bookPrice},
+            book_author=#{bookAuthor}
+        where book_id = #{bookId};
+    </update>
+
+    <select id="queryById" parameterType="int" resultMap="bookMap">
+        select <include refid="bookColumns"/>
+        from wjf.book
+        where book.book_id = ${bookId};
+    </select>
+
+    <select id="queryAllBooks" resultMap="bookMap">
+        select <include refid="bookColumns"/>
+        from wjf.book
+    </select>
+
+</mapper>

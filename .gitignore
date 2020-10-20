@@ -1,0 +1,13 @@
+HELP.md
+!src/main/java/**
+!src/main/resources/**
+!src/test/**
+!web/**
+!pom.xml
+
+out
+target
+
+### IntelliJ IDEA ###
+!.idea
+

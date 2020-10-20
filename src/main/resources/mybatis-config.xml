@@ -6,7 +6,8 @@
     <properties resource="jdbc.properties"/>
 
     <typeAliases>
-        <typeAlias type="com.wjf.pojo.Book" alias="book"/>
+<!--        <typeAlias type="com.wjf.pojo.Book" alias="book"/>-->
+        <package name="com.wjf.pojo"/>
     </typeAliases>
 
     <mappers>
